@@ -8,7 +8,6 @@
 package com.hiennv.flutter_callkit_incoming
 
 import android.app.Activity
-import android.app.KeyguardManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -368,15 +367,7 @@ class CallkitIncomingActivity : Activity() {
             TransparentActivity.getIntent(this, CallkitConstants.ACTION_CALL_ACCEPT, data)
         startActivity(acceptIntent)
 
-        dismissKeyguard()
         finish()
-    }
-
-    private fun dismissKeyguard() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-            keyguardManager.requestDismissKeyguard(this, null)
-        }
     }
 
     private fun onDeclineClick() {
